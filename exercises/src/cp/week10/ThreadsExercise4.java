@@ -1,10 +1,10 @@
-package extras;
+package cp.week10;
 
 /**
  *
  * @author Fabrizio Montesi <fmontesi@imada.sdu.dk>
  */
-public class Exercise4
+public class ThreadsExercise4
 {
 	/*
 	- Write the example from Listing 4.2 in the book.

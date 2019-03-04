@@ -1,76 +1,70 @@
 package cp.threads;
 
-// Create a thread
-// Create two threads that print on screen
-// Two loops counting
-// Busy-wait counter with boolean
 // Three loops counting with int
-// Atomic counter
-// Fibonacci
+
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 public class Threads
 {
-	private static int counter = 0;
-	private static boolean b = true;
-	
 	public static void main()
 	{
-		/*
-		 READ COUNTER as X           READ COUNTER as X
-		 X + 1 as RESULT             X + 1 as RESULT
-		 STORE RESULT in COUNTER     STORE RESULT in COUNTER
-		*/
+		List<Path> filenames = new ArrayList<>();
+		filenames.add( Paths.get( "/home/fmontesi/text1.txt" ) );
+		filenames.add( Paths.get( "/home/fmontesi/text2.txt" ) );
+		filenames.add( Paths.get( "/home/fmontesi/text3.txt" ) );
+		filenames.add( Paths.get( "/home/fmontesi/text4.txt" ) );
 		
-		/*
-		 READ COUNTER as 3           READ COUNTER as 3
-		 3 + 1 as RESULT             3 + 1 as RESULT
-		 STORE 4 in COUNTER			 STORE 4 in COUNTER
-		*/
+		// word -> number of times it appears
+		Map<String, Integer> occurrences = new HashMap<>();
 		
-		Thread t1 = new Thread( () -> {
-			for( int i = 0; i < 100_000_000; i++ ) {
-				if ( b ) {
-					counter++;
-					b = false;
-				} else {
-					i--;
-				}
-			}
-		});
-		Thread t2 = new Thread( () -> {
-			for( int i = 0; i < 100_000_000; i++ ) {
-				if ( !b ) {
-					counter++;
-					b = true;
-				} else {
-					i--;
-				}
-			}
-		});
-		t1.start();
-		t2.start();
-		try {
-			t1.join();
-			t2.join();
-		} catch( InterruptedException e ) {
-			e.printStackTrace();
+		List<Thread> workers = new ArrayList<>();
+		for( Path path : filenames ) {
+			workers.add( new Thread( () -> {
+				computeOccurrences( path, occurrences );
+			}));
 		}
-		System.out.println( counter );
+		
+		for( Thread t : workers ) {
+			t.start();
+		}
+		
+		for( Thread t : workers ) {
+			try {
+				t.join();
+			} catch( InterruptedException e ) {
+				e.printStackTrace();
+			}
+		}
+		
+		for( String word : occurrences.keySet() ) {
+			System.out.println( word + ": " + occurrences.get( word ) );
+		}
 	}
 	
-	private static void twoThreadsPrinting()
+	private static void computeOccurrences( Path path, Map<String, Integer> occurrences )
 	{
-		Thread t1 = new Thread( () -> {
-			System.out.println( "HELLO from t1" );
-		});
-		Thread t2 = new Thread( () -> {
-			System.out.println( "HELLO from t2" );
-		});
-		t1.start();
-		t2.start();
 		try {
-			t1.join();
-			t2.join();
-		} catch( InterruptedException e ) {
+			Files.lines( path ).forEach(
+				line -> {
+					for( String word : line.split( " " ) ) {
+						synchronized( occurrences ) {
+							if ( occurrences.containsKey( word ) ) {
+								occurrences.put( word, occurrences.get( word ) + 1 );
+							} else {
+								occurrences.put( word, 1 );
+							}
+						}
+					}
+				}
+			);
+		} catch( IOException e ) {
 			e.printStackTrace();
 		}
 	}

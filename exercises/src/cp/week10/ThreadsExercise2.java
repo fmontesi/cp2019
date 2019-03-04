@@ -1,10 +1,10 @@
-package extras;
+package cp.week10;
 
 /**
  *
  * @author Fabrizio Montesi <fmontesi@imada.sdu.dk>
  */
-public class Exercise2
+public class ThreadsExercise2
 {
 	/*
 	- Create a static class for cacheing the names of some cities in a static field.

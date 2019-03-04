@@ -1,10 +1,10 @@
-package extras;
+package cp.week10;
 
 /**
  *
  * @author Fabrizio Montesi <fmontesi@imada.sdu.dk>
  */
-public class Exercise5
+public class ThreadsExercise5
 {
 	/*
 	- Apply the technique for fixing Listing 4.14 to Listing 4.15 in the book, but to the following:
