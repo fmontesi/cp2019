@@ -1,6 +1,6 @@
 package cp;
 
-import cp.threads.SynchronizedMapExecutor;
+import cp.threads.SynchronizedMap;
 
 public class Main
 {
@@ -11,12 +11,12 @@ public class Main
 	// Fork join pool
 	public static void main( String[] args )
 	{
-//		doAndMeasure( SynchronizedMap::main );
+		doAndMeasure( SynchronizedMap::main );
 //		doAndMeasure( SynchronizedMap2::main );
 //		doAndMeasure( SynchronizedMap3::main );
 //		doAndMeasure( SynchronizedMap4::main );
 //		doAndMeasure( SynchronizedMap5::main );
-		doAndMeasure( SynchronizedMapExecutor::main );
+//		doAndMeasure( SynchronizedMapExecutor::main );
 //		doAndMeasure( OccurrenceStream::main );
 	}
 	
