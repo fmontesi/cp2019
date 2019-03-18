@@ -1,23 +1,26 @@
 package cp;
 
-import cp.threads.SynchronizedMap;
+import cp.threads.OccurrencesStream;
 
 public class Main
 {
-	// doAndMeasure
-	// contention: where to synchronize?
-	// Map Reduce
-	// ConcurrentHashMap
-	// Fork join pool
+	// Executor.submit(Callable<T>)
+	// Executor.cached
+	// Executor.single
+	// Stream
+	// Stream ForkJoinPool
+	// URLs
 	public static void main( String[] args )
 	{
-		doAndMeasure( SynchronizedMap::main );
+//		doAndMeasure( ExecutorCallableFun::main );
+//		doAndMeasure( ExecutorCallable::main );
+//		doAndMeasure( SynchronizedMap::main );
 //		doAndMeasure( SynchronizedMap2::main );
 //		doAndMeasure( SynchronizedMap3::main );
 //		doAndMeasure( SynchronizedMap4::main );
 //		doAndMeasure( SynchronizedMap5::main );
 //		doAndMeasure( SynchronizedMapExecutor::main );
-//		doAndMeasure( OccurrenceStream::main );
+		doAndMeasure( OccurrencesStream::main );
 	}
 	
 	private static void doAndMeasure( Runnable runnable )

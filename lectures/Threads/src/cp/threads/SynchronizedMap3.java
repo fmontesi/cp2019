@@ -46,10 +46,10 @@ public class SynchronizedMap3
 	public static void main()
 	{
 		List<Path> paths = new ArrayList<>();
-		paths.add( Paths.get( "/home/fmontesi/text1.txt" ) );
-		paths.add( Paths.get( "/home/fmontesi/text2.txt" ) );
-		paths.add( Paths.get( "/home/fmontesi/text3.txt" ) );
-		paths.add( Paths.get( "/home/fmontesi/text4.txt" ) );
+		paths.add( Paths.get( "text1.txt" ) );
+		paths.add( Paths.get( "text2.txt" ) );
+		paths.add( Paths.get( "text3.txt" ) );
+		paths.add( Paths.get( "text4.txt" ) );
 		
 		List<WordCounter> counters = new ArrayList<>();
 		List<Thread> workers = new ArrayList<>();
