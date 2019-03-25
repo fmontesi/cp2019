@@ -3,9 +3,6 @@ package cp;
 import java.nio.file.Path;
 import java.util.List;
 
-/**
- * @author Fabrizio Montesi <fmontesi@imada.sdu.dk>
- */
 public interface ExamInterface
 {
 	/**
@@ -28,15 +25,16 @@ public interface ExamInterface
 	 * This method returns a list of results. The list contains a result for
 	 * each text file that you find. Each {@link Result} stores the path of its
 	 * text file and the result of the arithmetic mean of the numbers found
-	 * inside of the text file.
+	 * inside of the text file (rounded down).
 	 * 
 	 * @param dir the directory to search
-	 * @return a list of results ({@link Result}), each giving the lowest number 
+	 * @return a list of results ({@link Result}), each giving the arithmetic mean 
 	 * found in a file.
 	 */
-
 	public List< Result > m1( Path dir );
 
+	// --- ANYTHING BELOW THIS LINE IS STILL SUBJECT TO POTENTIAL CHANGES ---
+	
 	/**
 	 * This method recursively visits a directory ({@link path}) for text files
 	 * with suffix ".dat" (notice that it is different than the one before)
@@ -51,9 +49,9 @@ public interface ExamInterface
 	 * 
 	 * For each line, this method:
 	 *
-	 *  1. divides the sequence of numbers into two  halves (if the count of
-	 *     numbers in the sequence is odd, then the first half must contain the
-	 *     middle value);
+	 * 1. divides the sequence of numbers into two halves (if the count of
+	 *    numbers in the sequence is odd, then the first half must contain the
+	 *    middle value);
 	 *
 	 * 2. calculates the sum (total) of each half;
 	 *
@@ -61,7 +59,7 @@ public interface ExamInterface
 	 *    halves.
 	 *
 	 * If the difference of a sequence is greater or equal (>=) than a parameter
-	 * {@link min}, the method can return immediately (without waiting to
+	 * {@link min}, the method must return as soon as possible (without waiting to
 	 * analyse also the other files). The return value is a result that
 	 * contains:
 	 *	- path: the path to the text file that contains the line that respects
@@ -81,4 +79,18 @@ public interface ExamInterface
 	 * Stats}.
 	 */
 	public Stats m3( Path dir );
+	
+	/**
+	 * (Note: If you're doing the re-exam of the 5 ECTS version
+	 * of Concurrent Programming, you do not have to implement this method.)
+	 * 
+	 * This method gets a stream of paths (the parameter paths), where each
+	 * path points to a ".dat" file (you must check that the path is valid though).
+	 * 
+	 * The content of each .dat file is guaranteed to be of the same format
+	 * as that used in method m2.
+	 * 
+	 * TBD
+	 */
+	// public Map< Integer, Result > m4( Stream< Path > paths );
 }

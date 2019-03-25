@@ -3,10 +3,6 @@ package cp;
 import java.nio.file.Path;
 import java.util.List;
 
-/**
- *
- * @author Fabrizio Montesi <fmontesi@imada.sdu.dk>
- */
 public interface Stats
 {
   /**
@@ -32,14 +28,4 @@ public interface Stats
    * Returns the number that was found the least times.
    */
   public int leastFrequent();
-  
-  /**
-   * Returns a list of all the files found in the directory, ordered from the
-   * one that contains numbers whose difference is the smallest (first of the
-   * list) to the one that contains numbers whose difference is the greatest
-   * (last of the list). See the documentation of {@link ExamInterface.m2}.for
-   * the definition of the difference.
-   *
-   */
-  public List< Path > byDifference();
 }
