@@ -2,10 +2,6 @@ package cp;
 
 import java.nio.file.Path;
 
-/**
- *
- * @author Fabrizio Montesi <fmontesi@imada.sdu.dk>
- */
 public interface Result
 {
   /**

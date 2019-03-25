@@ -1,6 +1,6 @@
 package cp;
 
-import cp.threads.OccurrencesStream;
+import cp.threads.Downloader;
 
 public class Main
 {
@@ -10,6 +10,7 @@ public class Main
 	// Stream
 	// Stream ForkJoinPool
 	// URLs
+	// Mind map of concurrency strategies
 	public static void main( String[] args )
 	{
 //		doAndMeasure( ExecutorCallableFun::main );
@@ -20,7 +21,8 @@ public class Main
 //		doAndMeasure( SynchronizedMap4::main );
 //		doAndMeasure( SynchronizedMap5::main );
 //		doAndMeasure( SynchronizedMapExecutor::main );
-		doAndMeasure( OccurrencesStream::main );
+		// doAndMeasure( OccurrencesStream::main );
+		doAndMeasure( Downloader::main );
 	}
 	
 	private static void doAndMeasure( Runnable runnable )

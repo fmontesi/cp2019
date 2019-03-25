@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.ForkJoinTask;
 
-public class OccurrencesStream
+public class ForkJoinOccurrencesStream
 {
 	public static void main()
 	{
