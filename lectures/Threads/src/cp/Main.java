@@ -1,6 +1,6 @@
 package cp;
 
-import cp.threads.Downloader;
+import cp.threads.SingleDownloader;
 
 public class Main
 {
@@ -22,7 +22,7 @@ public class Main
 //		doAndMeasure( SynchronizedMap5::main );
 //		doAndMeasure( SynchronizedMapExecutor::main );
 		// doAndMeasure( OccurrencesStream::main );
-		doAndMeasure( Downloader::main );
+		doAndMeasure(SingleDownloader::main );
 	}
 	
 	private static void doAndMeasure( Runnable runnable )

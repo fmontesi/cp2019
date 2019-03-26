@@ -63,47 +63,11 @@ public class ForkJoinOccurrencesStream
 		paths.add( Paths.get( "text3.txt" ) );
 		paths.add( Paths.get( "text4.txt" ) );
 
-		// Option 1: shared ConcurrentHashMap
-//		Map<String, Integer> occurrences = new ConcurrentHashMap<>();
-//
-//		Stream<Map<String, Integer>> s
-//			= paths.stream().parallel().map( path -> computeOccurrences( path ) );
-//		s.forEach( localOccurrences -> {
-//			localOccurrences.forEach( ( word, localTimes ) -> {
-//				occurrences.compute( word, ( w, globalTimes ) -> {
-//					if ( globalTimes == null ) {
-//						return localTimes;
-//					} else {
-//						return globalTimes + localTimes;
-//					}
-//				} );
-//			} );
-//		} );
-
-		// Option 2: no need for ConcurrentHashMap,
-		// becase the accumulation of results runs sequentially
-//		Map<String, Integer> occurrences = new HashMap<>();
-//		
-//		Stream<Map<String, Integer>> s
-//			= paths.stream().parallel().map( path -> computeOccurrences( path ) );
-//
-//		Map<String, Integer> results[] = s.toArray( Map[]::new );
-//		for( Map<String, Integer> localOccurrences : results ) {
-//			localOccurrences.forEach( ( word, times ) -> {
-//				if ( occurrences.containsKey( word ) ) {
-//					occurrences.put( word, occurrences.get( word ) + times );
-//				} else {
-//					occurrences.put( word, times );
-//				}
-//			} );
-//		}
-		
 		ForkJoinPool pool = new ForkJoinPool( 4 );
 
 		ForkJoinTask<Map<String,Integer>> task =
 			pool.submit( () ->
-//		{
-//		ForkJoinPool.commonPool().submit( () ->
+//		ForkJoinPool.commonPool().submit( () -> // This is default used by Java for parallel streams
 		{
 			return paths.stream().parallel()
 			.map( path -> computeOccurrences( path ) )
@@ -112,7 +76,6 @@ public class ForkJoinOccurrencesStream
 				( m1, m2 ) -> aggregate( m1, m2 )
 			);
 		} );
-//		} );
 		try {
 			task.get();
 		} catch( ExecutionException | InterruptedException e ) {}

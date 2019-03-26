@@ -8,9 +8,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.ForkJoinTask;
 
 public class OccurrencesStream
 {
@@ -98,24 +95,12 @@ public class OccurrencesStream
 //			} );
 //		}
 		
-		ForkJoinPool pool = new ForkJoinPool( 4 );
-
-		ForkJoinTask<Map<String,Integer>> task =
-			pool.submit( () ->
-//		{
-//		ForkJoinPool.commonPool().submit( () ->
-		{
-			return paths.stream().parallel()
+		paths.stream().parallel()
 			.map( path -> computeOccurrences( path ) )
 			.reduce(
 				new HashMap<>(),
 				( m1, m2 ) -> aggregate( m1, m2 )
 			);
-		} );
-//		} );
-		try {
-			task.get();
-		} catch( ExecutionException | InterruptedException e ) {}
 	}
 	
 	private static Map<String, Integer> aggregate(
