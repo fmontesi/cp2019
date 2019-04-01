@@ -1,6 +1,6 @@
 package cp;
 
-import cp.lambda.StreamMap;
+import cp.files.FileVisit;
 
 public class Main
 {
@@ -9,6 +9,7 @@ public class Main
 		// Generics.main(); // Week 6
 		// Lambda.main(); // Week 7
 //		Resources.main(); // Week 9
-		StreamMap.main();
+//		StreamMap.main();
+		FileVisit.main();
 	}
 }

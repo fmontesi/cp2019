@@ -8,8 +8,10 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-public class MultiDownloader
+public class MultiDownloader1
 {
 	public static void main()
 	{
@@ -25,25 +27,25 @@ public class MultiDownloader
 			e.printStackTrace();
 		}
 		
-		int bigResult = urls.stream().parallel().map( url -> {
+//		int bigResult =
+		urls.stream().parallel().map( url -> {
 			try {
 				InputStream is = url.openStream();
 				return new BufferedReader( new InputStreamReader( is ) );
 			} catch( IOException e ) {
 				return null;
 			}
-		} ).map( reader -> {
-			int result = reader.lines().map( line -> {
-				Integer counter = 0;
-				for( int i = 0; i < line.length(); i++ ) {
-					if ( line.charAt( i ) == 't' ) {
-						counter++;
-					}
-				}
-				return counter;
-			} ).reduce( 0, ( n1, n2 ) -> n1 + n2 );
-			return result;
-		} ).reduce( 0, ( n1, n2 ) -> n1 + n2 );
-		System.out.println( "Result " + bigResult );
+		} ).flatMap( reader -> {
+			return reader.lines();
+		} ).filter( line -> line.contains( ".pdf" ) )
+		.forEach( line -> {
+			Pattern p = Pattern.compile( "href=\"(.*?)\"" );
+			Matcher m = p.matcher( line );
+			if ( m.find() ) {
+				m.group( 1 );
+			}
+			System.out.println( m.group( 1 ) );
+		} );
+//		System.out.println( "Result " + bigResult );
 	}
 }

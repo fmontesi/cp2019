@@ -1,16 +1,16 @@
 package cp;
 
-import cp.threads.SingleDownloader;
+import cp.threads.MultiDownloaderFindAny;
 
 public class Main
 {
-	// Executor.submit(Callable<T>)
-	// Executor.cached
-	// Executor.single
-	// Stream
-	// Stream ForkJoinPool
-	// URLs
 	// Mind map of concurrency strategies
+	
+	// MultiDownloader findAny
+	// MultiDownloader save (Files::copy)
+	// MultiDownloader find PDFs "href=\"(.*?)\"" (flatMap)
+	// MultiDownloader asks for confirmation (producer consumer)
+	// MultiDownloader stop
 	public static void main( String[] args )
 	{
 //		doAndMeasure( ExecutorCallableFun::main );
@@ -21,8 +21,11 @@ public class Main
 //		doAndMeasure( SynchronizedMap4::main );
 //		doAndMeasure( SynchronizedMap5::main );
 //		doAndMeasure( SynchronizedMapExecutor::main );
-		// doAndMeasure( OccurrencesStream::main );
-		doAndMeasure(SingleDownloader::main );
+//		doAndMeasure( OccurrencesStream::main );
+//		doAndMeasure( SingleDownloader::main );
+//		doAndMeasure( MultiDownloader::main );
+//		doAndMeasure( MultiDownloaderPrettierForkJoin::main );
+		doAndMeasure( MultiDownloaderFindAny::main );
 	}
 	
 	private static void doAndMeasure( Runnable runnable )

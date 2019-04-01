@@ -59,7 +59,7 @@ public class OccurrencesStream
 		paths.add( Paths.get( "text2.txt" ) );
 		paths.add( Paths.get( "text3.txt" ) );
 		paths.add( Paths.get( "text4.txt" ) );
-
+		
 		// Option 1: shared ConcurrentHashMap
 //		Map<String, Integer> occurrences = new ConcurrentHashMap<>();
 //

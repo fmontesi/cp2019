@@ -4,12 +4,13 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MultiDownloader
+public class MultiDownloaderPrettier
 {
 	public static void main()
 	{
@@ -25,16 +26,30 @@ public class MultiDownloader
 			e.printStackTrace();
 		}
 		
-		int bigResult = urls.stream().parallel().map( url -> {
-			try {
-				InputStream is = url.openStream();
-				return new BufferedReader( new InputStreamReader( is ) );
-			} catch( IOException e ) {
-				return null;
-			}
-		} ).map( reader -> {
-			int result = reader.lines().map( line -> {
-				Integer counter = 0;
+		int bigResult = urls.stream().parallel()
+			.map( MultiDownloaderPrettier::urlToBufferedReader )
+			.map( MultiDownloaderPrettier::bufferedReaderToTs )
+			.reduce( 0, Integer::sum );
+		System.out.println( "Result " + bigResult );
+	}
+	
+	private static BufferedReader urlToBufferedReader( URL url )
+	{
+		try {
+			InputStream is = url.openStream();
+			return new BufferedReader( new InputStreamReader( is ) );
+		} catch( IOException e ) {
+			e.printStackTrace();
+			StringReader reader = new StringReader( "" );
+			return new BufferedReader( reader );
+		}
+	}
+	
+	private static int bufferedReaderToTs( BufferedReader reader )
+	{
+		return reader.lines()
+			.map( line -> {
+				int counter = 0;
 				for( int i = 0; i < line.length(); i++ ) {
 					if ( line.charAt( i ) == 't' ) {
 						counter++;
@@ -42,8 +57,5 @@ public class MultiDownloader
 				}
 				return counter;
 			} ).reduce( 0, ( n1, n2 ) -> n1 + n2 );
-			return result;
-		} ).reduce( 0, ( n1, n2 ) -> n1 + n2 );
-		System.out.println( "Result " + bigResult );
 	}
 }
