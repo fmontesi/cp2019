@@ -1,5 +1,3 @@
-package cp;
-
 import java.nio.file.Path;
 
 public interface Result
