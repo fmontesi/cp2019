@@ -34,7 +34,7 @@ not work well, then you risk failing.
 
 ## Checking your project (you must do this at least once!)
 
-Go to [https://concurrency.sdu.dk/cp-tester](https://concurrency.sdu.dk/cp-tester).
+Go to [https://concurrency.sdu.dk/cp-tester](https://concurrency.sdu.dk/cp-tester). (Note: this is still not up, it will go up in the next weeks.)
 You will find a webpage where you can upload your `source.zip` file and get information on whether it satisfies the format of the exam, along with some useful information on its correctness.
 
 Every time you test your project, the webpage will give you a unique **exam identifier**.
