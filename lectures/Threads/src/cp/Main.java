@@ -1,6 +1,6 @@
 package cp;
 
-import cp.threads.MultiDownloaderFindAny;
+import cp.threads.Blocking;
 
 public class Main
 {
@@ -25,7 +25,8 @@ public class Main
 //		doAndMeasure( SingleDownloader::main );
 //		doAndMeasure( MultiDownloader::main );
 //		doAndMeasure( MultiDownloaderPrettierForkJoin::main );
-		doAndMeasure( MultiDownloaderFindAny::main );
+//		doAndMeasure( MultiDownloaderFindAny::main );
+		doAndMeasure( Blocking::main );
 	}
 	
 	private static void doAndMeasure( Runnable runnable )
