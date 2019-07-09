@@ -14,7 +14,7 @@ public interface Stats
    * parameter threshold is strictly above (>) parameter min.
    *
    */
-  public List< Path > atLeastDifferent( int threshold, int min );
+  public List< Path > atLeastAbove( int threshold, int min );
   
   /**
    * Returns the number that was found the most times.
