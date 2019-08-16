@@ -43,7 +43,7 @@ Remember to save the last exam identifier that you get, this is important for th
 
 ## Report (report.pdf)
 
-The report must be written in English and be at max 3 page long.
+The report must be written in English and be at max 1 page long (the frontmatter, e.g., title and your name, do not count towards this limit, so you can use an extra page for the frontmatter if you like).
 
 Use 1.5 line spacing and ensure that the page margins are at least of 2cm (in all directions).
 For the body text, use Times new roman as family and at least 11pt as font size.
@@ -65,20 +65,14 @@ If you are using LaTeX, an easy way to obtain this is:
 In the first page of the report, you must state
 the name of the course, your name, your e-mail address, the date (in which
 you last edited the document), and your **exam identifier** (which you got from the online project checker).
-The report must contain the following sections:
-- Methodology. Here you explain how you designed your software. Give a brief
-  overview of how it works and then focus on how you handle concurrency.
-  For example, did you use futures, executors, manual control over threads,
-  and/or monitors? How did you use them?
-- Advantages. Here you explain the nice points of your implementation, i.e.,
-  the advantages that come out of your design choices.
-- Limitations. Here you explain the limitations of your approach and, possibly,
-  how they could be overcome. Did you sacrifice performance for achieving better
-  readability of your code? Or, did you sacrifice readability for improving
-  efficiency? Is there a way to improve how you coordinate concurrent computation?
+The report must contain a brief description of the strategy that you followed to implement each method (have you used futures, or streams, or manual control over threads, etc.), possibly including any noteworthy advantages and limitations (with mentions of possible improvements).
 
-Inspiration points to discuss advantages and
-limitations:
+Some questions you might want to think about:
+- Did you sacrifice performance for achieving better readability of your code?
+- Did you sacrifice readability for improving efficiency?
+- Is there a way to improve how you coordinate concurrent computation?
+
+Inspiration points to discuss advantages and limitations:
 - Readability
 - Speed
 - Scalability (scales well with the number of cores, or amount of memory)
@@ -89,7 +83,7 @@ limitations:
 
 # Upload instructions (exam hand-in)
 
-An assignment will be opened on Blackboard for handing in the project. The deadline for uploading the project on Blackboard will be: 31 May 2019 at midnight (local time).
+An assignment will be opened on Blackboard for handing in the project. The deadline for uploading the project on Blackboard will be: 31 August 2019 at midnight (local time).
 
 The file that you upload on Blackboard must be a zip file containing exactly the following two files.
 - `source.zip`: the zip file containing the source code of your software project. **This must be exactly the same file that you uploaded in the online project checker for the exam identifier that you wrote in the report, otherwise the identifiers will not match!**
